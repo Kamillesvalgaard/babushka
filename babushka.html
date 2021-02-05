@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bistro Babushka</title>
+
+    <style>
+        img {
+            width: 50%;
+            border: solid black 2px;
+        }
+
+        article {
+            font-family: sans-serif;
+            margin-left: 3vw;
+            font-size: 2vw;
+            margin-top: 10vw;
+
+        }
+
+        main {
+
+            /*           background-image: url(img/michael-parulava-L4jrg4c7928-unsplash.jpg);*/
+            background-size: contain;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Bistro Babushka</h1>
+    </header>
+    <main>
+        <h2>Menu</h2>
+    </main>
+
+    <template>
+        <article>
+            <img src="" alt="" class="billede">
+            <h3 class="ret"></h3>
+            <p class="beskrivelse"></p>
+            <p class="pris"></p>
+        </article>
+    </template>
+
+    <script>
+        const url = "https://babushka-dd8a.restdb.io/rest/menu";
+        const medieurl = "https://babushka-dd8a.restdb.io/media/";
+
+        const options = {
+            headers: {
+                'x-apikey': "600ec2fb1346a1524ff12de4"
+            }
+        };
+
+        async function hentData() {
+            const respons = await fetch(url, options);
+            const json = await respons.json();
+            vis(json);
+        }
+
+        const main = document.querySelector("main");
+        const template = document.querySelector("template").content;
+
+        function vis(json) {
+            console.log(json);
+
+            json.forEach(menu => {
+                const klon = template.cloneNode(true);
+                klon.querySelector(".billede").src = medieurl + menu.billede;
+                klon.querySelector(".ret").textContent = menu.navn;
+                klon.querySelector(".beskrivelse").textContent = menu.kortbeskrivelse;
+                klon.querySelector(".pris").textContent = `Pris: ${menu.pris},-`;
+                main.appendChild(klon);
+
+            })
+
+
+
+
+
+
+        }
+
+        hentData();
+
+    </script>
+</body>
+
+</html>
