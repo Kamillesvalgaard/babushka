@@ -7,27 +7,39 @@
     <title>Bistro Babushka</title>
 
     <style>
+        body {
+            background-image: url(img/michael-parulava-L4jrg4c7928-unsplash.jpg);
+            background-size: contain;
+
+        }
+
         img {
-            width: 50%;
+            width: 90%;
             border: solid black 2px;
+            max-width: 100%;
         }
 
         article {
             font-family: sans-serif;
             margin-left: 3vw;
-            font-size: 2vw;
+            font-size: 2.3vw;
             margin-top: 10vw;
-
+            border: 2px solid black;
+            padding: 2vw;
+            background-color: #e85656;
+            display: flex;
+            flex-direction: row;
+            width: 80vw;
         }
 
         main {
-
-            /*           background-image: url(img/michael-parulava-L4jrg4c7928-unsplash.jpg);*/
-            background-size: contain;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
         }
 
+        #txt {
+            margin-right: 10vw;
+        }
     </style>
 </head>
 
@@ -35,17 +47,22 @@
 
     <header>
         <h1>Bistro Babushka</h1>
+        <h2>Menu</h2>
     </header>
     <main>
-        <h2>Menu</h2>
+
     </main>
 
     <template>
         <article>
-            <img src="" alt="" class="billede">
-            <h3 class="ret"></h3>
-            <p class="beskrivelse"></p>
-            <p class="pris"></p>
+            <section>
+                <img src="" alt="" class="billede">
+            </section>
+            <section id="txt">
+                <h3 class="ret"></h3>
+                <p class="beskrivelse"></p>
+                <p class="pris"></p>
+            </section>
         </article>
     </template>
 
@@ -89,8 +106,5 @@
         }
 
         hentData();
-
     </script>
-</body>
-
-</html>
+</body></html>
