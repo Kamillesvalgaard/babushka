@@ -40,6 +40,51 @@
         #txt {
             margin-right: 10vw;
         }
+
+        .valgt {
+            background-color: red;
+        }
+
+        @media (min-width: 716px) {
+            article {
+                font-size: 1.5vw;
+                padding: 1vw;
+                width: 40vw;
+                margin-top: 6vw;
+            }
+
+            img {
+                width: 90%;
+            }
+
+            #txt {
+                margin-right: 2vw;
+                margin-top: -1vw;
+            }
+
+        }
+
+        @media (min-width: 1065px) {
+            article {
+                padding: 2vw;
+                width: 25vw;
+                display: flex;
+                flex-direction: column;
+                margin-left: 2vw;
+                font-size: 1vw;
+                margin-top: 5vw;
+            }
+
+            img {
+                width: 100%;
+            }
+
+            #txt {
+                margin-top: 0.5vw;
+                margin-bottom: -1vw;
+            }
+
+        }
     </style>
 </head>
 
@@ -48,10 +93,17 @@
     <header>
         <h1>Bistro Babushka</h1>
         <h2>Menu</h2>
+        <h3>Alle</h3>
+        <nav>
+            <button data-retter="alle" class="valgt">Alle</button>
+            <button data-retter="forretter">Forretter</button>
+            <button data-retter="hovedretter">Hovedretter</button>
+            <button data-retter="desserter">Desserter</button>
+            <button data-retter="sideorders">Sideorders</button>
+            <button data-retter="drikkevarer">Drikkevarer</button>
+        </nav>
     </header>
-    <main>
-
-    </main>
+    <main></main>
 
     <template>
         <article>
@@ -69,6 +121,7 @@
     <script>
         const url = "https://babushka-dd8a.restdb.io/rest/menu";
         const medieurl = "https://babushka-dd8a.restdb.io/media/";
+        const header = document.querySelector("header h3");
 
         const options = {
             headers: {
@@ -76,25 +129,53 @@
             }
         };
 
-        async function hentData() {
-            const respons = await fetch(url, options);
-            const json = await respons.json();
-            vis(json);
+        document.addEventListener("DOMContentLoaded", start)
+        let retter;
+        let filter = "alle";
+
+        function start() {
+            const filterKnapper = document.querySelectorAll("nav button");
+
+            filterKnapper.forEach(knap => knap.addEventListener("click", filtrerRetter));
+            hentData();
         }
 
-        const main = document.querySelector("main");
-        const template = document.querySelector("template").content;
+        function filtrerRetter() {
+            filter = this.dataset.retter;
+            console.log("Retter", filter);
+            document.querySelector(".valgt").classList.remove("valgt");
+            this.classList.add("valgt");
+            header.textContent = this.textContent;
 
-        function vis(json) {
-            console.log(json);
 
-            json.forEach(menu => {
-                const klon = template.cloneNode(true);
-                klon.querySelector(".billede").src = medieurl + menu.billede;
-                klon.querySelector(".ret").textContent = menu.navn;
-                klon.querySelector(".beskrivelse").textContent = menu.kortbeskrivelse;
-                klon.querySelector(".pris").textContent = `Pris: ${menu.pris},-`;
-                main.appendChild(klon);
+
+            visRetter();
+        }
+
+        async function hentData() {
+            const respons = await fetch(url, options);
+            retter = await respons.json();
+            console.log("Retter", retter);
+            visRetter();
+        }
+
+        function visRetter() {
+            const main = document.querySelector("main");
+            const template = document.querySelector("template").content;
+            main.textContent = "";
+
+            retter.forEach(ret => {
+                //console.log("Retter", ret.pris)
+                if (filter == ret.kategori || filter == "alle") {
+                    const klon = template.cloneNode(true);
+                    klon.querySelector(".billede").src = medieurl + ret.billede;
+                    klon.querySelector(".ret").textContent = ret.navn;
+                    klon.querySelector(".beskrivelse").textContent = ret.kortbeskrivelse;
+                    klon.querySelector(".pris").textContent = `Pris: ${ret.pris},-`;
+                    main.appendChild(klon);
+                }
+
+
 
             })
 
@@ -104,7 +185,5 @@
 
 
         }
-
-        hentData();
     </script>
 </body></html>
