@@ -7,9 +7,54 @@
     <title>Bistro Babushka</title>
 
     <style>
-        body {
+        @font-face {
+            font-family: 'rigormortisregular';
+            src: url('rigormortisregular-webfont.woff2') format('woff2'),
+                url('rigormortisregular-webfont.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+
+        }
+
+        h1 {
+            font-size: 10vw;
+            font-family: rigormortisregular;
+            margin-left: 2vw;
+        }
+
+        h2 {
+            font-size: 6vw;
+            font-family: sans-serif;
+            margin-left: 2vw;
+
+        }
+
+        h3 {
+            font-size: 4vw;
+            font-family: sans-serif;
+            margin-left: 2vw;
+
+        }
+
+        #overskrift {
+            display: flex;
+            flex-direction: row;
             background-image: url(img/michael-parulava-L4jrg4c7928-unsplash.jpg);
-            background-size: contain;
+            background-size: cover;
+            border: solid black 2px;
+        }
+
+        .logo {
+            width: 20%;
+            height: 20%;
+            border: none;
+            margin-top: 2vw;
+            margin-left: 2vw;
+        }
+
+
+        body {
+            background-color: #d1d1d1;
 
         }
 
@@ -17,19 +62,33 @@
             width: 90%;
             border: solid black 2px;
             max-width: 100%;
+            border-radius: 5px;
+
+        }
+
+        button {
+            border-radius: 5px;
+            background-color: white;
+            font-family: sans-serif;
+        }
+
+        nav {
+            margin-left: 2vw;
+
         }
 
         article {
             font-family: sans-serif;
-            margin-left: 3vw;
-            font-size: 2.3vw;
+            margin-left: 2vw;
+            font-size: 2.4vw;
             margin-top: 10vw;
             border: 2px solid black;
             padding: 2vw;
-            background-color: #e85656;
+            background-color: #ff0000;
             display: flex;
             flex-direction: row;
             width: 80vw;
+            border-radius: 5px;
         }
 
         main {
@@ -62,6 +121,27 @@
                 margin-top: -1vw;
             }
 
+            .logo {
+                width: 15%;
+                height: 15%;
+                margin-top: 2vw;
+                margin-left: 20vw;
+            }
+
+            h1 {
+                font-size: 8vw;
+                font-family: rigormortisregular;
+                margin-left: 2vw;
+            }
+
+            h2 {
+                font-size: 5vw;
+            }
+
+            h3 {
+                font-size: 3vw;
+            }
+
         }
 
         @media (min-width: 1065px) {
@@ -84,14 +164,40 @@
                 margin-bottom: -1vw;
             }
 
+            .logo {
+                width: 12%;
+                height: 12%;
+                margin-top: 3vw;
+                margin-left: 35vw;
+                margin-bottom: 2vw;
+            }
+
+            h1 {
+                font-size: 6.5vw;
+                margin-top: 7vw;
+            }
+
+            h2 {
+                font-size: 4vw;
+            }
+
+            h3 {
+                font-size: 2vw;
+            }
+
+
         }
+
     </style>
 </head>
 
 <body>
 
     <header>
-        <h1>Bistro Babushka</h1>
+        <section id="overskrift">
+            <h1>Bistro Babushka</h1>
+            <img class="logo" src="img/Asset%201.png" alt="logo">
+        </section>
         <h2>Menu</h2>
         <h3>Alle</h3>
         <nav>
@@ -111,7 +217,7 @@
                 <img src="" alt="" class="billede">
             </section>
             <section id="txt">
-                <h3 class="ret"></h3>
+                <h4 class="ret"></h4>
                 <p class="beskrivelse"></p>
                 <p class="pris"></p>
             </section>
@@ -185,5 +291,8 @@
 
 
         }
+
     </script>
-</body></html>
+</body>
+
+</html>
