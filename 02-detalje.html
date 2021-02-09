@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail view</title>
+
+    <style>
+        @font-face {
+            font-family: 'rigormortisregular';
+            src: url('rigormortisregular-webfont.woff2') format('woff2'),
+                url('rigormortisregular-webfont.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+
+        }
+
+        h1 {
+            font-size: 10vw;
+            font-family: rigormortisregular;
+            margin-left: 2vw;
+        }
+
+        h2 {
+            font-size: 6vw;
+            font-family: sans-serif;
+            margin-left: 2vw;
+
+        }
+
+        #overskrift {
+            display: flex;
+            flex-direction: row;
+            background-image: url(img/michael-parulava-L4jrg4c7928-unsplash.jpg);
+            background-size: cover;
+            border: solid black 2px;
+        }
+
+        .logo {
+            width: 20%;
+            height: 20%;
+            border: none;
+            margin-top: 2vw;
+            margin-left: 2vw;
+        }
+
+
+        body {
+            background-color: #d1d1d1;
+
+        }
+
+        img {
+            width: 100%;
+            border: solid black 2px;
+            max-width: 100%;
+            border-radius: 5px;
+        }
+
+
+        button {
+            border-radius: 5px;
+            background-color: white;
+            font-family: sans-serif;
+            margin-left: 2vw;
+            margin-top: 2vw;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #b0b0d0;
+        }
+
+        article {
+            font-family: sans-serif;
+            margin: 0 auto;
+            font-size: 2.4vw;
+            margin-top: 5vw;
+            border: 2px solid black;
+            padding: 2vw;
+            background-color: #b0b0d0;
+            width: 80vw;
+            border-radius: 5px;
+        }
+
+
+        @media (min-width: 716px) {
+            article {
+                font-size: 1.9vw;
+                padding: 2vw;
+                width: 70vw;
+            }
+
+            img {
+                width: 100%;
+            }
+
+            #txt {
+                margin-right: 2vw;
+                margin-top: -1vw;
+            }
+
+            .logo {
+                width: 15%;
+                height: 15%;
+                margin-top: 2vw;
+                margin-left: 20vw;
+            }
+
+            h1 {
+                font-size: 8vw;
+                font-family: rigormortisregular;
+                margin-left: 2vw;
+            }
+
+
+        }
+
+        @media (min-width: 1065px) {
+            article {
+                width: 70vw;
+                display: flex;
+                flex-direction: row;
+                font-size: 1.3vw;
+
+            }
+
+            img {
+                width: 90%;
+            }
+
+            #txt {
+                margin-top: 0.5vw;
+                margin-bottom: -1vw;
+                margin-right: 2vw;
+            }
+
+            .logo {
+                width: 12%;
+                height: 12%;
+                margin-top: 3vw;
+                margin-left: 35vw;
+                margin-bottom: 2vw;
+            }
+
+            h1 {
+                font-size: 6.5vw;
+                margin-top: 7vw;
+            }
+
+
+        }
+
+    </style>
+</head>
+
+<header>
+    <section id="overskrift">
+        <h1>Bistro Babushka</h1>
+        <img class="logo" src="img/Asset%201.png" alt="logo">
+    </section>
+</header>
+
+<body>
+    <button>Tilbage til menuen</button>
+    <article>
+        <section>
+            <img src="" alt="" class="billede">
+        </section>
+        <section id="txt">
+            <h4 class="ret"></h4>
+            <p class="beskrivelse"></p>
+            <p class="pris"></p>
+        </section>
+    </article>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get("id");
+
+        const medieurl = "https://babushka-dd8a.restdb.io/media/";
+        let ret;
+        const myHeaders = {
+            "x-apikey": "600ec2fb1346a1524ff12de4"
+        }
+        console.log("ID", id);
+        document.addEventListener("DOMContentLoaded", loadJSON);
+
+        async function loadJSON() {
+            const JSONData = await fetch(`https://babushka-dd8a.restdb.io/rest/menu/${id}`, {
+                headers: myHeaders
+            });
+            ret = await JSONData.json();
+
+            console.log("Retter", ret);
+            visRet(ret);
+
+        }
+
+        function visRet() {
+            document.querySelector(".billede").src = medieurl + ret.billede;
+            document.querySelector(".ret").textContent = ret.navn;
+            document.querySelector(".beskrivelse").textContent = ret.langbeskrivelse;
+            document.querySelector(".pris").textContent = `Pris: ${ret.pris},-`;
+
+            document.querySelector("button").addEventListener("click", tilbageMenu);
+        }
+
+        function tilbageMenu() {
+            history.back();
+        }
+
+    </script>
+</body>
+
+</html>
