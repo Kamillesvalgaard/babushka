@@ -24,23 +24,37 @@
         }
 
         h1 {
-            font-size: 10vw;
+            font-size: 9.8vw;
             font-family: rigormortisregular;
             margin-left: 2vw;
         }
 
-        h2 {
-            font-size: 6vw;
-            font-family: sans-serif;
-            margin-left: 2vw;
+        #menu {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            width: 100%;
+            margin: auto;
+            background-color: black;
+            height: 7vw;
+        }
 
+        #menu a {
+            text-decoration: none;
+            color: white;
+            font-family: sans-serif;
+            cursor: pointer;
+            margin-top: 2vw;
+        }
+
+        #menu a:hover {
+            color: #b0b0d0;
         }
 
         h3 {
             font-size: 4vw;
             font-family: sans-serif;
             margin-left: 2vw;
-
         }
 
         #overskrift {
@@ -48,7 +62,7 @@
             flex-direction: row;
             background-image: url(img/michael-parulava-L4jrg4c7928-unsplash.jpg);
             background-size: cover;
-            border: solid black 2px;
+            border: solid black 5px;
         }
 
         .logo {
@@ -78,6 +92,11 @@
             background-color: white;
             font-family: sans-serif;
             cursor: pointer;
+            margin-top: 2vw;
+        }
+
+        button:hover {
+            background-color: #b0b0d0;
         }
 
         nav {
@@ -87,9 +106,9 @@
 
         article {
             font-family: sans-serif;
-            margin-left: 2vw;
+            margin: auto;
             font-size: 2.4vw;
-            margin-top: 10vw;
+            margin-top: 7vw;
             border: 2px solid black;
             padding: 2vw;
             background-color: #b0b0d0;
@@ -112,6 +131,36 @@
         .valgt {
             background-color: #b0b0d0;
         }
+
+        footer {
+            width: 100%;
+            background-image: url(img/michael-parulava-L4jrg4c7928-unsplash.jpg);
+            background-size: cover;
+            margin-left: 0;
+            border: solid black 2px;
+            margin-top: 10vw;
+            display: grid;
+            grid-template-columns: 2fr 3fr 3fr 1fr;
+        }
+
+        footer p {
+            text-decoration: none;
+            font-family: sans-serif;
+            padding: 2vw;
+            font-size: 2vw;
+        }
+
+        footer img {
+            border: none;
+            width: 100%;
+            margin-top: 2vw;
+            margin-left: -3vw;
+        }
+
+        #telf {
+            margin-left: 10vw;
+        }
+
 
         @media (min-width: 716px) {
             article {
@@ -203,22 +252,43 @@
 <body>
 
     <header>
+
+        <nav id="menu">
+            <a href="">MENU</a>
+            <a href="">OM</a>
+            <a href="">RESERVER</a>
+        </nav>
+
         <section id="overskrift">
             <h1>Bistro Babushka</h1>
             <img class="logo" src="img/Asset%201.png" alt="logo">
         </section>
-        <h2>Menu</h2>
-        <h3>Alle</h3>
+        <h3>Alle retter</h3>
         <nav>
-            <button data-retter="alle" class="valgt">Alle</button>
+            <button data-retter="alle" class="valgt">Alle retter</button>
             <button data-retter="forretter">Forretter</button>
             <button data-retter="hovedretter">Hovedretter</button>
             <button data-retter="desserter">Desserter</button>
-            <button data-retter="sideorders">Sideorders</button>
+            <button data-retter="sideorders">Sides</button>
             <button data-retter="drikkevarer">Drikkevarer</button>
         </nav>
     </header>
     <main></main>
+    <a href="babushka.html">
+        <button>Tilbage til toppen</button>
+    </a>
+    <footer>
+        <p>
+            Adresse: <br> Grønnegade 97 <br> 1234 Kbh K
+        </p>
+        <p>
+            Åbningstider: <br> Mandag - fredag: 10.00 - 21.00 <br> Lørdag - søndag: 12.30 - 22.00
+        </p>
+        <p id="telf">
+            Tlf: <br>12 23 34 45
+        </p>
+        <img src="img/Asset%201.png" alt="logo i bunden">
+    </footer>
 
     <template>
         <article>

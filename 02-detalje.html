@@ -24,7 +24,7 @@
         }
 
         h1 {
-            font-size: 10vw;
+            font-size: 9.8vw;
             font-family: rigormortisregular;
             margin-left: 2vw;
         }
@@ -41,7 +41,7 @@
             flex-direction: row;
             background-image: url(img/michael-parulava-L4jrg4c7928-unsplash.jpg);
             background-size: cover;
-            border: solid black 2px;
+            border: solid black 5px;
         }
 
         .logo {
@@ -91,6 +91,56 @@
             border-radius: 5px;
         }
 
+        footer {
+            width: 100%;
+            background-image: url(img/michael-parulava-L4jrg4c7928-unsplash.jpg);
+            background-size: cover;
+            margin-left: 0;
+            border: solid black 2px;
+            margin-top: 10vw;
+            display: grid;
+            grid-template-columns: 2fr 3fr 3fr 1fr;
+        }
+
+        footer p {
+            text-decoration: none;
+            font-family: sans-serif;
+            padding: 2vw;
+            font-size: 2vw;
+        }
+
+        footer img {
+            border: none;
+            width: 100%;
+            margin-top: 2vw;
+            margin-left: -3vw;
+        }
+
+        #telf {
+            margin-left: 10vw;
+        }
+
+        #menu {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            width: 100%;
+            margin: auto;
+            background-color: black;
+            height: 7vw;
+        }
+
+        #menu a {
+            text-decoration: none;
+            color: white;
+            font-family: sans-serif;
+            cursor: pointer;
+            margin-top: 2vw;
+        }
+
+        #menu a:hover {
+            color: #b0b0d0;
+        }
 
         @media (min-width: 716px) {
             article {
@@ -158,16 +208,22 @@
 
 
         }
-
     </style>
 </head>
 
 <header>
+
+    <nav id="menu">
+        <a href="">MENU</a>
+        <a href="">OM</a>
+        <a href="">RESERVER</a>
+    </nav>
     <section id="overskrift">
         <h1>Bistro Babushka</h1>
         <img class="logo" src="img/Asset%201.png" alt="logo">
     </section>
 </header>
+
 
 <body>
     <button>Tilbage til menuen</button>
@@ -181,6 +237,19 @@
             <p class="pris"></p>
         </section>
     </article>
+
+    <footer>
+        <p>
+            Adresse: <br> Grønnegade 97 <br> 1234 Kbh K
+        </p>
+        <p>
+            Åbningstider: <br> Mandag - fredag: 10.00 - 21.00 <br> Lørdag - søndag: 12.30 - 22.00
+        </p>
+        <p id="telf">
+            Tlf: <br>12 23 34 45
+        </p>
+        <img src="img/Asset%201.png" alt="logo i bunden">
+    </footer>
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
@@ -217,8 +286,5 @@
         function tilbageMenu() {
             history.back();
         }
-
     </script>
-</body>
-
-</html>
+</body></html>
